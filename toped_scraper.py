@@ -31,19 +31,19 @@ JS_CODE = "window.scrollBy(0,320)"
 
 links = []
 
-page = 1
+PAGE = 1
 for i in range(1, 3):
-    page = i
-    this_page = str(page) + "&q="
-    url = BASE_URL + this_page + encoded_term
+    PAGE = i
+    THIS_PAGE = str(PAGE) + "&q="
+    url = BASE_URL + THIS_PAGE + encoded_term
     print(url)
     driver.get(url)
 
-    scroll = 0
-    while scroll < 14:
+    SCROLL = 0
+    while SCROLL < 14:
         driver.execute_script(JS_CODE)
         time.sleep(0.9)
-        scroll += 1
+        SCROLL += 1
 
     XPATH = '//div[@class="css-19oqosi"]/a'
     elements = driver.find_elements(By.XPATH, XPATH)
