@@ -8,27 +8,33 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 
 options = webdriver.ChromeOptions()
-options.add_argument('--no-sandbox')
-options.add_argument('--headless')
-options.add_argument('--disable-gpu') # tanpa ini sudah bisa jalan, tapi katanya ini bikin lebih cepat
-options.add_argument('--disable-dev-shm-usage') # tanpa ini sudah bisa jalan, tapi katanya ini bikin lebih cepat
-options.add_argument('--disable-blink-features=AutomationControlled') # ini supaya tidak terdeteksi bot?
+options.add_argument("--no-sandbox")
+options.add_argument("--headless")
+options.add_argument(
+    "--disable-gpu"
+)  # tanpa ini sudah bisa jalan, tapi katanya ini bikin lebih cepat
+options.add_argument(
+    "--disable-dev-shm-usage"
+)  # tanpa ini sudah bisa jalan, tapi katanya ini bikin lebih cepat
+options.add_argument(
+    "--disable-blink-features=AutomationControlled"
+)  # ini supaya tidak terdeteksi bot?
 
 
-BASE_URL = 'https://www.tokopedia.com/search?ob=5&page='
+BASE_URL = "https://www.tokopedia.com/search?ob=5&page="
 query = input("Kata Kunci: ")
 encoded_term = urllib.parse.quote(query)
 
 driver = webdriver.Chrome(options=options)
 
-JS_CODE = 'window.scrollBy(0,320)'
+JS_CODE = "window.scrollBy(0,320)"
 
 links = []
 
 page = 1
-for i in range(1,3):
+for i in range(1, 3):
     page = i
-    this_page = str(page) + '&q='
+    this_page = str(page) + "&q="
     url = BASE_URL + this_page + encoded_term
     print(url)
     driver.get(url)
